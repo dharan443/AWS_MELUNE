@@ -1,0 +1,25 @@
+version: '3.8'  # Specify the version of the Compose file format
+
+services:
+  frontend:
+    build:
+      context: C:\Users\dhara\Desktop\Melune-master\frontend
+    ports:
+      - "80:3000"  # Mapping port 3000 inside the container to port 80 on the host machine
+    networks:
+      - app-network  # Attach to the app-network
+
+  backend:
+    build:
+      context: C:\Users\dhara\Desktop\Melune-master\backend  # Update this path to the actual backend directory
+    ports:
+      - "5000:5000"  # Mapping port 5000 inside the container to port 5000 on the host machine
+    environment:
+      - NODE_ENV=production
+    command: ["node", "index.js"]  # Specify the command to run index.js
+    networks:
+      - app-network  # Attach to the app-network
+
+networks:
+  app-network:
+    driver: bridge  # Using bridge driver for communication between services

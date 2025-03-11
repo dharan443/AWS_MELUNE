@@ -1,0 +1,16 @@
+{
+	"name": "melune",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "npm install --prefix backend && npm install --prefix frontend --include=dev && cd frontend && npm rebuild && npx vite build",
+		"start": "npm start --prefix backend"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"engines": {
+		"node": "18.x"
+	}
+}
