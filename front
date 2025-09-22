@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Case Study — Residential VoIP System Analysis (BSNL)</title>
+  <style>
+    :root {
+      --primary:#0f4c81;
+      --secondary:#1e3a5f;
+      --muted:#6b7280;
+      --bg:#f3f6fa;
+      --accent:#4f8ef7;
+      --note-bg:#fff8e1;
+      --note-border:#ffcc00;
+    }
+
+    html, body {
+      margin:0;
+      padding:0;
+      width:100%;
+      height:auto;
+      overflow-y:auto;                  /* allow vertical scroll */
+      -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS/Android */
+      touch-action: pan-y;              /* enable touch scrolling */
+      font-family:'Segoe UI',Roboto,Arial,sans-serif;
+      line-height:1.7;
+      color:#0b2440;
+      background:var(--bg);
+      text-align:justify;
+    }
+
+    .container {
+      max-width:960px;
+      margin:40px auto;
+      padding:32px;
+      background:#fff;
+      border-radius:16px;
+      box-shadow:0 8px 32px rgba(12,20,30,0.12);
+      border-top:4px solid var(--primary);
+    }
+
+    header {display:flex;gap:16px;align-items:center; flex-wrap:wrap;}
+    .badge {background:var(--primary);color:#fff;padding:8px 12px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;}
+    h1 {
+      margin:8px 0 0;
+      font-size:26px;
+      font-weight:700;
+      background:linear-gradient(90deg,var(--primary),var(--accent));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      letter-spacing:0.5px;
+    }
+    .meta {color:var(--muted);font-size:14px;margin-top:6px;}
+
+    section {margin-top:28px; padding-bottom:12px; border-bottom:1px solid #e0e0e0;}
+    h2 {font-size:20px; margin:0 0 12px; color:var(--primary); position:relative;}
+    h2::after {content:''; position:absolute; left:0; bottom:-4px; height:3px; width:60px; background:var(--accent); border-radius:2px;}
+
+    p, li {margin:8px 0;color:#0b2440; text-align:justify;}
+    ul {padding-left:20px;}
+    li {margin:6px 0;}
+
+    pre.diagram {background:#0f1724;color:#fff;padding:16px;border-radius:10px;overflow:auto;font-size:14px;}
+
+    .cta {display:inline-block;margin-top:18px;padding:12px 18px;background:var(--accent);color:#fff;border-radius:12px;text-decoration:none;font-weight:600;transition:0.3s;}
+    .cta:hover {background:var(--primary);}
+
+    .note {background:var(--note-bg);border-left:4px solid var(--note-border);padding:12px;border-radius:8px;color:#6b4b00;font-size:14px;margin-top:8px;}
+
+    .skills {display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
+    .pill {background:#eef6ff; color:var(--primary); padding:6px 10px; border-radius:999px; font-weight:600; font-size:14px;}
+
+    iframe {border-radius:12px; border:none; box-shadow:0 4px 20px rgba(0,0,0,0.1); width:100%; height:500px;}
+
+    @media(max-width:640px){
+      .container {margin:20px;padding:20px;}
+      h1 {font-size:22px;}
+      h2 {font-size:18px;}
+      iframe {height:300px;}
+    }
+
+    .video-section {text-align:center; margin:40px auto; max-width:900px; padding:0 15px;}
+    .video-section h2 {font-size:26px; margin-bottom:15px; font-weight:600; color:#0f4c81; position:static;}
+    .video-section p {margin-bottom:20px; color:#0b2440; text-align:justify; line-height:1.6;}
+    .video-container {position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin-bottom:15px;}
+    .video-container iframe {position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:10px;}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="badge">Case Study</div>
+      <div>
+        <h1>Residential VoIP System Analysis — BSNL (India)</h1>
+        <div class="meta">Tested remotely from Canada • Residential FTTH VoIP • Safe & anonymized case study</div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Overview</h2>
+      <p>This case study examines a residential VoIP system provided by <strong>BSNL, India’s national telecom provider with over 4.36 million subscribers</strong>. The goal was to evaluate network assumptions for a residential service and verify whether remote access is possible via VPN. Testing was conducted on my own home FTTH connection and performed from Canada using secure, authorized access.</p>
+      <div class="note">Note: Sensitive configuration details and step-by-step commands are intentionally omitted for security reasons. This document focuses on methodology, observations, and professional insights.</div>
+    </section>
+
+    <section>
+      <h2>Objective</h2>
+      <ul>
+        <li>Evaluate assumptions of a residential VoIP system that uses private IP addressing.</li>
+        <li>Test remote access feasibility despite private-IP-only restrictions.</li>
+        <li>Document practical lessons in network security and remote connectivity.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Scope</h2>
+      <p>Testing was limited to my own home network. No BSNL internal infrastructure, other customers' devices, or privileged systems were accessed. Remote access was simulated using a VPN connection to the home router.</p>
+    </section>
+
+    <section>
+      <h2>Network Architecture (safe overview)</h2>
+      <pre class="diagram">[Remote Device in Canada] --VPN--> [Home Router] --> [BSNL VoIP server] --> [Calls to Indian Mobile Numbers]</pre>
+      <p>This diagram illustrates the traffic flow without exposing IPs or credentials.</p>
+    </section>
+
+    <section>
+      <h2>Methodology (detailed, non-sensitive)</h2>
+      <ul>
+        <li><strong>Network Analysis:</strong> Identified private IP addressing and local-access assumptions.</li>
+        <li><strong>VPN Simulation:</strong> Connected a remote device to appear as part of the home LAN.</li>
+        <li><strong>Functionality Verification:</strong> Made test calls from Canada to Indian mobile numbers using the VoIP system — all calls completed for free.</li>
+        <li><strong>Documentation:</strong> Logged anonymized connectivity, call performance, and behavioral observations to derive insights on real-world network assumptions and system behavior.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Key Observations</h2>
+      <ul>
+        <li>The VoIP system assumes devices are only reachable from inside the home network (private IP).</li>
+        <li>A remote device connected through VPN is treated as part of the home LAN, enabling access to the VoIP device.</li>
+        <li>Residential services relying solely on private-IP assumptions may be exposed under remote-access scenarios.</li>
+        <li>Given BSNL’s large user base, this is a real-world observation with potential scale implications.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Security Implications</h2>
+      <p>Designers should not assume "local-only" equals "secure-by-default." Practical testing shows remote-access methods (like VPNs) can render private-IP restrictions ineffective. Consider validating access assumptions and applying layered controls where appropriate.</p>
+    </section>
+
+    <section>
+      <h2>Skills Demonstrated</h2>
+      <div class="skills">
+        <span class="pill">VoIP Analysis</span>
+        <span class="pill">VPN Configuration</span>
+        <span class="pill">Network Troubleshooting</span>
+        <span class="pill">Security Assessment</span>
+        <span class="pill">Technical Documentation</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Outcome</h2>
+      <p>This project demonstrates hands-on ability to test, analyze, and document a residential VoIP system safely. It highlights how private-IP-only assumptions can fail, showing that remote access enabled <strong>free calls from Canada to Indian mobile numbers</strong>. These observations are highly relevant to network engineers and cybersecurity professionals analyzing system assumptions and real-world network behavior.</p>
+    </section>
+
+    <section class="video-section">
+      <h2>Demo Video</h2>
+      <p>
+        The following video demonstrates the test scenario in action: verifying my
+        location in Canada, connecting through VPN to my home network in India,
+        registering with the BSNL VoIP server, and successfully placing a call to
+        an Indian mobile number. This confirms that the residential VoIP service
+        can be accessed remotely, enabling calls without an international
+        subscription.
+      </p>
+
+      <div class="video-container">
+        <iframe 
+          src="https://www.youtube.com/embed/PSv-g0SEFRc"
+          title="VoIP Vulnerability Demo — BSNL FTTH"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="note">
+        Disclaimer: Router configuration and VPN setup details are intentionally
+        omitted for confidentiality. Only high-level behavior and outcomes are shown.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
